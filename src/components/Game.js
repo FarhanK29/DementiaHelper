@@ -11,7 +11,7 @@ function Game() {
 
   useEffect(() => {
     // Fetch cards from the JSON file and initialize the game
-    fetch('./data/cards.json')
+    fetch('../data.json')
       .then((res) => res.json())
       .then((data) => {
         const duplicatedCards = [...data, ...data]; // Duplicate cards for matching
