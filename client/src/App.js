@@ -1,7 +1,7 @@
 // src/App.js
 import React from 'react';
 import { BrowserRouter as Router, Route, Routes, Link } from 'react-router-dom';
-import Home from './components/Home';
+import Home from './pages/Home';
 import Game from './components/Game';
 import Signup from './pages/Signup';
 import PictureMatching from './pages/PictureMatching';
