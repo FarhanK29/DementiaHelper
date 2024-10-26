@@ -1,0 +1,12 @@
+.images-div{
+    display:flex;
+    justify-content: center;
+    align-items: center;
+}
+
+.picture-matching-box{
+    display:flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+}
