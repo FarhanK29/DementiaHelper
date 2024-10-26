@@ -10,8 +10,8 @@ function ActivityTiles() {
       <Link to="/game" className="tile game-tile">
         <h2>Memory Game</h2>
       </Link>
-      <Link to="/future-activity" className="tile future-tile">
-        <h2>Future Activity</h2>
+      <Link to="/picture-matching" className="tile future-tile">
+        <h2>Picture Matching</h2>
       </Link>
     </div>
   );

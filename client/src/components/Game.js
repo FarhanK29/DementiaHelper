@@ -1,6 +1,7 @@
 // src/Game.js
 import React, { useEffect, useState } from 'react';
 import "../static/styles/game.css";
+import BackButton from './BackButton'; // Import the BackButton
 
 function Game() {
   const [cards, setCards] = useState([]);
@@ -70,13 +71,14 @@ function Game() {
   };
 
   return (
-    <div className="game-container">
+    <div>
+      <BackButton /> {/* Add the BackButton here */}
       <h1>Memory Cards</h1>
       <div className="grid-container">
         {cards.map((card, index) => (
           <div
             key={index}
-            className={`card ${index === firstCard || index === secondCard || matchedCards.includes(index) ? 'flipped' : ''}`}
+            className={`card ${index === firstCard || index === secondCard ? 'flipped' : ''}`}
             onClick={() => flipCard(index)}
             data-name={card.name}
           >
