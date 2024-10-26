@@ -73,7 +73,7 @@ function Game() {
   return (
     <div>
       <BackButton /> {/* Add the BackButton here */}
-      <h1>Memory Cards</h1>
+      <h1 class="game">Memory Cards</h1>
       <div className="grid-container">
         {cards.map((card, index) => (
           <div
