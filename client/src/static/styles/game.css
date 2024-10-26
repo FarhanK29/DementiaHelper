@@ -10,20 +10,21 @@ body {
 
 h1 {
   text-align: center;      /* Center the title */
-  margin: 20px 0;         /* Add some margin for spacing */
+  margin: 2vh;
+  margin-top: -4vh;          /* Decreased top margin by another 50% */
 }
 
 p {
   text-align: center;      /* Center the score */
   font-size: 30px;
   font-weight: bold;
-  margin: 20px 0;         /* Add some margin for spacing */
+  margin: 5px 0;          /* Decreased top margin by another 50% */
 }
 
 .actions {
   display: flex;
   justify-content: center; /* Center the actions (restart button) */
-  margin: 20px 0;         /* Add some margin for spacing */
+  margin: 20px 0;         /* Keep the original margin for the button */
 }
 
 .actions button {
@@ -32,24 +33,29 @@ p {
   border-radius: 10px;
   background-color: #27ae60;
   color: white;
+  margin-top: -2vh;
 }
 
 .grid-container {
   display: grid;
-  justify-content: center;
+  justify-content: center;  /* Center grid items */
+  align-items: center;      /* Center items vertically */
   grid-gap: 16px;
   grid-template-columns: repeat(6, 133px); /* 140px reduced by 5% to 133px */
-  grid-template-rows: repeat(2, calc(133px / 2 * 3)); /* Adjust height based on new width */
+  grid-template-rows: repeat(2, calc(120px / 2 * 3)); /* Adjust height based on new width */
 }
 
 .card {
-  height: calc(133px / 2 * 3); /* Adjusted height to be 5% smaller */
+  height: calc(120px / 2 * 3); /* Adjusted height to be 5% smaller */
   width: 133px;                 /* Adjusted width to be 5% smaller */
   border-radius: 10px;
   background-color: white; /* Keep cards white */
   position: relative;
   transform-style: preserve-3d;
   transition: all 0.5s ease-in-out;
+  display: flex;            /* Use flexbox to center the image */
+  justify-content: center;  /* Center the image horizontally */
+  align-items: center;      /* Center the image vertically */
 }
 
 .front-image {
