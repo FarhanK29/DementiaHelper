@@ -8,6 +8,7 @@ function Game() {
   const [secondCard, setSecondCard] = useState(null);
   const [lockBoard, setLockBoard] = useState(false);
   const [score, setScore] = useState(0);
+  const [matchedCards, setMatchedCards] = useState([]); // Track matched cards
 
   useEffect(() => {
     // Fetch cards from the JSON file and initialize the game
@@ -25,7 +26,7 @@ function Game() {
   };
 
   const flipCard = (cardIndex) => {
-    if (lockBoard || cardIndex === firstCard) return; // Prevent flipping the same card
+    if (lockBoard || cardIndex === firstCard || matchedCards.includes(cardIndex)) return;
 
     if (firstCard === null) {
       setFirstCard(cardIndex);
@@ -41,24 +42,23 @@ function Game() {
     const isMatch = cards[firstCard].name === cards[secondCardIndex].name;
 
     if (isMatch) {
-      disableCards();
+      setMatchedCards((prev) => [...prev, firstCard, secondCardIndex]);
+      resetBoard(); // Reset after a match
     } else {
       unflipCards();
     }
   };
 
-  const disableCards = () => {
+  const unflipCards = () => {
+    setTimeout(() => {
+      resetBoard();
+    }, 1000);
+  };
+
+  const resetBoard = () => {
     setFirstCard(null);
     setSecondCard(null);
     setLockBoard(false);
-  };
-
-  const unflipCards = () => {
-    setTimeout(() => {
-      setFirstCard(null);
-      setSecondCard(null);
-      setLockBoard(false);
-    }, 1000);
   };
 
   const restart = () => {
@@ -66,6 +66,7 @@ function Game() {
     setFirstCard(null);
     setSecondCard(null);
     setLockBoard(false);
+    setMatchedCards([]); // Clear matched cards
     shuffleCards(cards); // Shuffle cards again
   };
 
@@ -76,7 +77,7 @@ function Game() {
         {cards.map((card, index) => (
           <div
             key={index}
-            className={`card ${index === firstCard || index === secondCard ? 'flipped' : ''}`}
+            className={`card ${index === firstCard || index === secondCard || matchedCards.includes(index) ? 'flipped' : ''}`}
             onClick={() => flipCard(index)}
             data-name={card.name}
           >
@@ -87,7 +88,7 @@ function Game() {
           </div>
         ))}
       </div>
-      <p>Score: <span className="score">{score}</span></p>
+      <p>Tries: <span className="score">{score}</span></p>
       <div className="actions">
         <button onClick={restart}>Restart</button>
       </div>
