@@ -18,15 +18,6 @@ const Navbar = () => {
     <nav>
       <ul>
         <li>
-          <Link to="/">Home</Link>
-        </li>
-        <li>
-          <Link to="/game">Game</Link>
-        </li>
-        <li>
-          <Link to="/picture-matching">Picture Matching</Link>
-        </li>
-        <li>
           <button onClick={handleLogout}>Logout</button>
         </li>
       </ul>
