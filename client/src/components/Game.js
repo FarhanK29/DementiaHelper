@@ -70,13 +70,12 @@ function Game() {
     setMatchedCards([]);
     shuffleCards(cards);
     setGameCompleted(false); // Reset the game completion state
-    updateScore();
   };
 
   const updateScore = async () => {
     const username = localStorage.getItem('username'); // Get the username from local storage
     if (username) {
-        const scoreValue = score > 0 ? Math.floor(9 / score) : 0; // Calculate the score value, avoiding division by zero
+        const scoreValue = score > 0 ? Math.floor(180 / score) : 0; // Calculate the score value, avoiding division by zero
         console.log(username, scoreValue); // Log username and scoreValue for debugging
         try {
             await axios.post(`http://127.0.0.1:8000/api/update-score/${username}/`, {
@@ -91,10 +90,10 @@ function Game() {
     } else {
         console.error('No username found in local storage.');
     }
-};
+  };
 
-  const checkGameCompletion = () => {
-    if (matchedCards.length === cards.length) {
+  const checkGameCompletion = async () => {
+    if (matchedCards.length === cards.length && cards.length > 0) {
       setGameCompleted(true);
       updateScore(); // Update score when the game is completed
     }
@@ -102,12 +101,12 @@ function Game() {
 
   useEffect(() => {
     checkGameCompletion(); // Check if the game is complete on every render
-  }, [matchedCards]); // Depend on matchedCards
+  }, [matchedCards, cards]); // Depend on matchedCards and cards
 
   return (
     <div className="game-container">
       <BackButton />
-      <h1 class="game-h1">Memory Cards</h1>
+      <h1 className="game-h1">Memory Cards</h1>
       <div className="grid-container">
         {cards.map((card, index) => (
           <div
@@ -123,9 +122,9 @@ function Game() {
           </div>
         ))}
       </div>
-      <p className = "game-score">Score: <span className="score">{score}</span></p>
+      <p className="game-score">Score: <span className="score">{score}</span></p>
       <div className="actions">
-        <button className = "game-restart-button" onClick={restart}>Restart</button>
+        <button className="game-restart-button" onClick={restart}>Restart</button>
       </div>
       {gameCompleted && <p className="completion-message">Congratulations! You've completed the game!</p>}
     </div>

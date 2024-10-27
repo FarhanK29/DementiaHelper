@@ -34,16 +34,10 @@ function App() {
         <Routes>
           <Route path="/signup" element={<Signup />} />
           <Route path="/login" element={<Login />} />
-<<<<<<< HEAD
-          <Route path="/" element={<ClientDashboard />} />
-          <Route path="/caregiver/" element={<CaregiverDashboard />} />
-          <Route path="/game" element={<ProtectedRoute><Game username={username} /></ProtectedRoute>} />
-=======
           <Route path = "/" element = {<ClientDashboard />} />
           <Route path = "/caregiver/" element = {<CaregiverDashboard />} />
           {/* <Route path="/memory-game" element={<ProtectedRoute> <Game /> </ProtectedRoute>} /> */}
           <Route path = "/memory-game" element = {<Game />} />
->>>>>>> ef765af143beea1604a9a287c6ef1ef312b50e08
           <Route path="/picture-matching" element={<PictureMatching />} />
           <Route path="*" element={<ClientDashboard />} />
         </Routes>

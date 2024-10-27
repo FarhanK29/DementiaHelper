@@ -1,5 +1,3 @@
-// src/components/PictureMatching.js
-
 import React, { useState, useEffect } from 'react';
 import BackButton from '../components/BackButton';
 import axios from '../axios';
@@ -12,7 +10,7 @@ const PictureMatching = () => {
   const [completionMessage, setCompletionMessage] = useState('');
   const [similarityScore, setSimilarityScore] = useState(null);
   const [isSubmitted, setIsSubmitted] = useState(false);
-
+  const [totalScore, setTotalScore] = useState(0); // State to hold total score
 
   useEffect(() => {
     // Fetch 5 random pictures from the API
@@ -30,36 +28,52 @@ const PictureMatching = () => {
 
   const handleSubmit = async (e) => {
     e.preventDefault();
+    const username = localStorage.getItem('username');
 
     // Get the current picture's description
     const currentPictureDescription = pictures[currentIndex].description;
+    if (username) {
+      try {
+        // Make a call to the similarity API
+        const response = await axios.post('/api/similarity/', {
+          sentence1: userDescription,
+          sentence2: currentPictureDescription,
+        });
 
-    try {
-      // Make a call to the similarity API
-      const response = await axios.post('/api/similarity/', {
-        sentence1: userDescription,
-        sentence2: currentPictureDescription,
-      });
-
-      // Update the similarity score
-      setSimilarityScore(response.data.result);
-      setIsSubmitted(true); // Mark as submitted
-    } catch (error) {
-      console.error('Error submitting description:', error);
+        // Update the similarity score
+        const similarity = response.data.result;
+        setSimilarityScore(similarity);
+        setTotalScore(prevScore => prevScore + similarity); // Update total score
+        setIsSubmitted(true); // Mark as submitted
+      } catch (error) {
+        console.error('Error submitting description:', error);
+      }
     }
   };
 
-
-
-  const handleNext = () => {
+  const handleNext = async () => {
     // Move to the next picture
     if (currentIndex < pictures.length - 1) {
       setCurrentIndex(currentIndex + 1);
       setUserDescription(''); // Reset user description
-      setSimilarityScore(null); // Reset the similarity score
       setIsSubmitted(false); // Reset the submission state
     } else {
+      // Game is complete
       setCompletionMessage('You have completed the picture matching exercise!');
+
+      const username = localStorage.getItem('username');
+      // Update score in the API only when the game is over
+      if (username) {
+        try {
+          await axios.post(`/api/update-score/${username}/`, {
+            username: username, // Replace with the actual user ID if necessary
+            score_type: 'score2', // Use the similarity score to update score2
+            score_value: totalScore/5, // Send the total score
+          });
+        } catch (error) {
+          console.error('Error updating score:', error);
+        }
+      }
     }
   };
 

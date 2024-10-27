@@ -5,24 +5,19 @@ import { Chart as ChartJS, LineElement, CategoryScale, LinearScale, PointElement
 // Register required Chart.js components
 ChartJS.register(LineElement, CategoryScale, LinearScale, PointElement);
 
-const ScoresChart = (props) => {
-  // JSON data for demonstration purposes
-  const data = {
-    patientId: "12345",
-    scores: [
-      { score1: 0, score2: 78, score3: 92 },
-      { score1: 88, score2: 81, score3: 90 },
-      { score1: 80, score2: 76, score3: 88 },
-      { score1: 82, score2: 79, score3: 91 },
-      { score1: 87, score2: 83, score3: 89 },
-    ]
-  };
+const ScoresChart = ({ scores }) => {
+  // Check if scores are available and structured correctly
+  const scores1 = scores.score1 || [];
+  const scores2 = scores.score2 || [];
+  const scores3 = scores.score3 || [];
+  
+  // Check if all score arrays are empty
+  if (scores1.length === 0 && scores2.length === 0 && scores3.length === 0) {
+    return <div>No scores available to display.</div>;
+  }
 
-  // Extract score arrays from data
-  const scores1 = data.scores.map((entry) => entry.score1);
-  const scores2 = data.scores.map((entry) => entry.score2);
-  const scores3 = data.scores.map((entry) => entry.score3);
-  const labels = Array.from({ length: scores1.length }, (_, i) => `Instance ${i + 1}`);
+  // Create labels for each score entry
+  const labels = Array.from({ length: Math.max(scores1.length, scores2.length, scores3.length) }, (_, i) => `Instance ${i + 1}`);
 
   // Chart configurations
   const chartOptions = {
@@ -50,11 +45,11 @@ const ScoresChart = (props) => {
 
   return (
     <div>
-      <h2>Score 1</h2>
-      <Line data={getChartData(scores1, 'Score 1', 'blue')} options={chartOptions} />
+      <h2>Memory Score</h2>
+      <Line data={getChartData(scores1, 'Memory Score', 'blue')} options={chartOptions} />
 
-      <h2>Score 2</h2>
-      <Line data={getChartData(scores2, 'Score 2', 'green')} options={chartOptions} />
+      <h2>Image Recognition Score</h2>
+      <Line data={getChartData(scores2, 'Image Recognition Score', 'green')} options={chartOptions} />
 
       <h2>Score 3</h2>
       <Line data={getChartData(scores3, 'Score 3', 'red')} options={chartOptions} />
