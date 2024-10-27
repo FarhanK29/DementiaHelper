@@ -8,7 +8,7 @@ import PictureMatching from './pages/PictureMatching';
 import ProtectedRoute from './components/ProtectedRoutes';
 import Login from './pages/Login';
 import Navbar from './components/Navbar';
-import Signup from './components/SignUp';
+import Signup from './pages/Signup';
 // import { useAuth0 } from "@auth0/auth0-react";
 
 function App() {

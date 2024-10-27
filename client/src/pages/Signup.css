@@ -1,0 +1,117 @@
+body{
+    margin:0;
+    padding:0;
+}
+.signup-page{
+    font-family: 'Poppins', sans-serif;
+    position: absolute;
+    top: 0;
+    left: 0;
+    right: 0;
+    bottom: 0;
+    background-color: rgb(249, 249, 249);
+    /* display:flex; */
+    /* justify-content:left; */
+}
+
+.signup-box{
+    color:black;
+    background-color:white;
+    display:flex;
+    flex-direction:column;
+    align-items:center;
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+    padding:100px;
+    /* background-color:blue; */
+    box-shadow: 0 0 10px 0 rgba(0, 0, 0, 0.1);
+    border-radius:15px;
+
+    
+
+
+}
+
+.signup-box > h1{
+    font-size:2.25em;
+}
+
+.signup-form > h3{
+    font-size:0.9em;
+    font-weight:normal
+}
+
+.login-redirect, .forgot-password-link{
+    color:blue;
+}
+
+
+.signup-header{
+    font-size: 1.6em;
+    padding:15px;
+    padding-left:20px;
+    display:inline-block;
+    color:black;
+
+
+}
+
+.signup-form{
+    display:inline-flex;
+    flex-direction:column;
+}
+
+.signup-form > label{
+    padding: 5px 0px;
+
+}
+.username-input, .password-input{
+    color:white;
+    border-radius:10px;
+    background: rgba(78, 73, 73, 0.3);
+    border:0.5px solid white;
+    padding-left:10px;
+    height:35px;
+    width:240px;
+}
+
+.username-input:hover, .password-input:hover{
+    cursor:text;
+    background: rgba(78, 73, 73, 0.6);
+}
+
+::placeholder{
+    color:white;
+}
+
+.signup-button{
+    height:40px;
+    border-radius: 50px;
+    border: 0.5px solid white;
+    background:rgb(4, 117, 230);
+    color:white;
+    width:255px;
+    cursor: pointer;
+    transition: background-color 0.3s ease;
+    margin-bottom:12px;
+}
+    
+
+.signup-button:hover {
+    background-color: #0c5094;
+}
+
+.signup-button:active {
+    background-color: #0358a8;
+}
+.signup-button-container{
+    padding-top:20px;
+}
+.error{
+    color: #ff0015;
+    text-align:center;
+    padding-bottom:5px;
+
+}

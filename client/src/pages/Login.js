@@ -10,6 +10,10 @@ const Login = () => {
 
   const handleLogin = async (event) => {
     event.preventDefault();
+    if (!username || !password) {
+      setError('Username and password are required');
+      return;
+    }
     try {
       const response = await fetch('http://127.0.0.1:8000/api/token/', {
         method: 'POST',
@@ -22,6 +26,10 @@ const Login = () => {
       }
 
       const data = await response.json();
+      if(data.status !== "ok"){
+        setError("Invalid email/password");
+        return;
+      }
       localStorage.setItem('accessToken', data.access);
       localStorage.setItem('refreshToken', data.refresh);
       
