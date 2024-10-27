@@ -7,8 +7,8 @@ import Game from './components/Game';
 import PictureMatching from './pages/PictureMatching';
 import ProtectedRoute from './components/ProtectedRoutes';
 import Login from './pages/Login';
-import Navbar from './components/Navbar';
 import Signup from './pages/Signup';
+import CaregiverDashboard from './pages/CaregiverDashboard';
 // import { useAuth0 } from "@auth0/auth0-react";
 
 function App() {
@@ -30,9 +30,11 @@ function App() {
           </ul>
         </nav> */}
         <Routes>
+
           <Route path="/signup" element={<Signup />} />
           <Route path="/login" element={<Login />} />
           <Route path="/" element={ <Home /> } />
+          <Route path = "/caregiver/" element = {<CaregiverDashboard />} />
           <Route path="/game" element={<ProtectedRoute> <Game /> </ProtectedRoute>} />
           <Route path="/picture-matching" element={<PictureMatching />} />
           <Route path="*" element={<Login />} />

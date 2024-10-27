@@ -43,8 +43,10 @@ body{
     font-weight:normal
 }
 
-.login-redirect, .forgot-password-link{
-    color:blue;
+
+
+.login-redirect{
+    color:black;
 }
 
 
