@@ -71,6 +71,7 @@ body {
 }
 
 .front, .back {
+  cursor: pointer;
   backface-visibility: hidden;
   position: absolute;
   border-radius: 10px;
@@ -98,4 +99,8 @@ body {
 
 .card .front {
   transform: rotateY(180deg);
+}
+
+.game-restart-button{
+  cursor:pointer;
 }

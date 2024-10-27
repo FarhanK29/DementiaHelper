@@ -91,7 +91,7 @@ function Game() {
       </div>
       <p className = "game-score">Score: <span className="score">{score}</span></p>
       <div className="actions">
-        <button onClick={restart}>Restart</button>
+        <button className = "game-restart-button" onClick={restart}>Restart</button>
       </div>
     </div>
   );

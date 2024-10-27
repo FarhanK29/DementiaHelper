@@ -74,7 +74,7 @@ const CaregiverDashboard = () => {
 
         
             <div className="section">
-                <h2>Assign Reminders</h2>
+                <h2 className = "caregiver-h2">Assign Reminders</h2>
                 {reminders.map((reminder, index) => (
                 <div key={reminder.id} className="reminder-item">
                     <input
@@ -99,7 +99,7 @@ const CaregiverDashboard = () => {
 
        
             <div className="section">
-                <h2>Select Date</h2>
+                <h2 className = "caregiver-h2">Select Date</h2>
                 <input
                     type="date"
                     value={date}
@@ -114,7 +114,7 @@ const CaregiverDashboard = () => {
 
         
             <div className="section graph">
-                <h2>Activity Graph</h2>
+                <h2 className = "caregiver-h2">Activity Graph</h2>
                 <Graph></Graph>
             </div>
         </div>
