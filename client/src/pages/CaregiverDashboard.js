@@ -1,14 +1,26 @@
 import React, { useState } from "react";
 import "./CaregiverDashboard.css";
-import { FaSearch } from "react-icons/fa"; // Optional icon for search input
+import { FaSearch } from "react-icons/fa";
 
 const CaregiverDashboard = () => {
   const [selectedUser, setSelectedUser] = useState("");
-  const [reminder, setReminder] = useState("");
   const [date, setDate] = useState(new Date().toISOString().split("T")[0]);
+  const [reminders, setReminders] = useState([{ id: Date.now(), text: "" }]);
+
+  const handleAddReminder = () => {
+    setReminders([...reminders, { id: Date.now(), text: "" }]);
+  };
+
+  const handleReminderChange = (index, value) => {
+    const updatedReminders = reminders.map((reminder, idx) =>
+      idx === index ? { ...reminder, text: value } : reminder
+    );
+    setReminders(updatedReminders);
+  };
 
   const handleSubmit = () => {
-    alert(`Reminder for ${selectedUser} on ${date}: ${reminder}`);
+    const remindersText = reminders.map((reminder) => reminder.text).filter(Boolean);
+    alert(`Reminders for ${selectedUser} on ${date}: ${remindersText.join(", ")}`);
   };
 
   return (
@@ -32,15 +44,22 @@ const CaregiverDashboard = () => {
           </div>
         </div>
 
-        {/* Reminder Section */}
+        {/* Reminders Section */}
         <div className="section">
-          <h2>Assign Reminder</h2>
-          <input
-            type="text"
-            value={reminder}
-            onChange={(e) => setReminder(e.target.value)}
-            placeholder="Enter reminder details"
-          />
+          <h2>Assign Reminders</h2>
+          {reminders.map((reminder, index) => (
+            <input
+              key={reminder.id}
+              type="text"
+              value={reminder.text}
+              onChange={(e) => handleReminderChange(index, e.target.value)}
+              placeholder={`Reminder ${index + 1}`}
+              className="reminder-input"
+            />
+          ))}
+          <button className="add-reminder-button" onClick={handleAddReminder}>
+            + Add Another Reminder
+          </button>
         </div>
 
         {/* Date Picker */}
@@ -55,7 +74,7 @@ const CaregiverDashboard = () => {
 
         {/* Submit Button */}
         <button className="submit-button" onClick={handleSubmit}>
-          Submit Reminder
+          Submit Reminders
         </button>
 
         {/* Graph Placeholder */}

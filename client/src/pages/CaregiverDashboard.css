@@ -1,11 +1,4 @@
-/* Base settings */
-body {
-    margin: 0;
-    padding: 0;
-    background-color: #f4f6f9;
-    color: #333;
-    font-family: Arial, sans-serif;
-  }
+
   
   /* Dashboard styling */
   .caregiver-dashboard {
@@ -81,8 +74,38 @@ body {
     background-color: #45a049;
   }
   
-  /* Input styling */
-  input[type="text"],
+  /* Reminder input styling */
+  .reminder-input {
+    width: 100%;
+    padding: 0.8rem;
+    margin-top: 0.5rem;
+    margin-bottom: 0.5rem;
+    border: 1px solid #ddd;
+    border-radius: 10px;
+    font-size: 1rem;
+    box-sizing: border-box;
+  }
+  
+  .add-reminder-button {
+    background-color: #007BFF;
+    color: white;
+    padding: 0.5rem 1rem;
+    border: none;
+    border-radius: 8px;
+    font-size: 1rem;
+    cursor: pointer;
+    display: block;
+    width: 100%;
+    max-width: 300px;
+    margin: 1rem auto;
+    font-weight: bold;
+  }
+  
+  .add-reminder-button:hover {
+    background-color: #0056b3;
+  }
+  
+  /* Date input styling */
   input[type="date"] {
     width: 100%;
     padding: 0.8rem;
