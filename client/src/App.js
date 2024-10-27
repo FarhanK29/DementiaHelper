@@ -9,26 +9,13 @@ import ProtectedRoute from './components/ProtectedRoutes';
 import Login from './pages/Login';
 import Signup from './pages/Signup';
 import CaregiverDashboard from './pages/CaregiverDashboard';
-// import { useAuth0 } from "@auth0/auth0-react";
+
 
 function App() {
   return (
     <Router>
       <div>
-        {/* <nav>
-          <ul>
-            <li>
-              <Link to="/">Home</Link>
-            </li>
-            <li>
-              <Link to="/game">Game</Link>
-            </li>
-            <li><Link to = "/signup">Signup</Link></li>
-            <li>
-              <Link to="/picture-matching">Picture Matching</Link>
-            </li>
-          </ul>
-        </nav> */}
+       
         <Routes>
 
           <Route path="/signup" element={<Signup />} />
@@ -37,7 +24,7 @@ function App() {
           <Route path = "/caregiver/" element = {<CaregiverDashboard />} />
           <Route path="/game" element={<ProtectedRoute> <Game /> </ProtectedRoute>} />
           <Route path="/picture-matching" element={<PictureMatching />} />
-          <Route path="*" element={<Login />} />
+          <Route path="*" element={ <Home /> } />
         </Routes>
       </div>
     </Router>

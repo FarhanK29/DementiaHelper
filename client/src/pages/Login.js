@@ -67,7 +67,7 @@ const Login = () => {
                 </div>
                 {error && <div className="error">{error}</div>}
                 
-                <h3><Link className = "forgot-password-link">Forgot Password?</Link></h3>
+
                 <div className = "registration-redirect">Don't have an account? <Link className = "registration-link" to = "/signup" >Register Here</Link></div>
             </form>
         </div>
