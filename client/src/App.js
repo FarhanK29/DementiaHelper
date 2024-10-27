@@ -3,17 +3,12 @@ import React from 'react';
 import { BrowserRouter as Router, Route, Routes } from 'react-router-dom';
 import Home from './pages/Home';
 import Game from './components/Game';
-<<<<<<< HEAD
 // import Signup from './pages/Signup';
 import PictureMatching from './pages/PictureMatching';
 import ProtectedRoute from './components/ProtectedRoutes';
 import Login from './pages/Login';
 import Navbar from './components/Navbar';
 // import { useAuth0 } from "@auth0/auth0-react";
-=======
-import PictureMatching from './pages/PictureMatching';
-import { AuthenticationGuard } from "./components/authentication-guard";
->>>>>>> 3367e487432cfcc1127e5ada00e20577ed771691
 
 function App() {
   return (
@@ -35,7 +30,6 @@ function App() {
         </nav> */}
         <Navbar />
         <Routes>
-<<<<<<< HEAD
           {/* <Route path = "/login" element = {<Login />} />
           <Route path = "/signup" element = {<Signup />} /> */}
           <Route path="/login" element={<Login />} />
@@ -43,13 +37,6 @@ function App() {
           <Route path="/game" element={<ProtectedRoute> <Game /> </ProtectedRoute>} />
           <Route path="/picture-matching" element={<PictureMatching />} />
           <Route path="*" element={<Login />} />
-=======
-
-          <Route path = "/callback" element = {<Home />} />
-          <Route path="/" element={ <AuthenticationGuard component = {Home} />} />
-          <Route path="/game" element={<Game  />} />
-          <Route path="/picture-matching" element={<PictureMatching /> } />
->>>>>>> 3367e487432cfcc1127e5ada00e20577ed771691
         </Routes>
       </div>
     </Router>
