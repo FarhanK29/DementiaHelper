@@ -37,11 +37,11 @@ const CaregiverDashboard = () => {
         <Navbar className = "caregiver-navbar" />
     
         <div className="container">
-            <h1>Caregiver Dashboard</h1>
+            <h1 className = "caregiver-h1">Caregiver Dashboard</h1>
 
             {/* User Search Section */}
             <div className="section user-search">
-                <h2>Select Patient</h2>
+                <h2 className = "caregiver-h2">Select Patient</h2>
                 <div className="search-container">
                     <input
                         type="text"

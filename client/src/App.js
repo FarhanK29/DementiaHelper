@@ -35,7 +35,8 @@ function App() {
           <Route path="/login" element={<Login />} />
           <Route path = "/" element = {<ClientDashboard />} />
           <Route path = "/caregiver/" element = {<CaregiverDashboard />} />
-          <Route path="/game" element={<ProtectedRoute> <Game /> </ProtectedRoute>} />
+          {/* <Route path="/memory-game" element={<ProtectedRoute> <Game /> </ProtectedRoute>} /> */}
+          <Route path = "/memory-game" element = {<Game />} />
           <Route path="/picture-matching" element={<PictureMatching />} />
           <Route path="*" element={ <ClientDashboard /> } />
         </Routes>

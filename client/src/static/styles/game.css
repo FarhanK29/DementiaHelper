@@ -8,18 +8,16 @@ body {
   font-family: Arial, sans-serif;
 }
 
-h1 {
+.game-h1 {
   text-align: center;      /* Center the title */
-  margin: 2vh;
-  /* margin-top: -4vh;          Decreased top margin by another 50% */
+  margin: 3vh;
+  /* margin-top: -4vh;  
+          Decreased top margin by another 50% */
+          
 }
 
-.game{
 
-  margin-top: -3vh;
-}
-
-p {
+.game-score {
   text-align: center;      /* Center the score */
   font-size: 30px;
   font-weight: bold;
