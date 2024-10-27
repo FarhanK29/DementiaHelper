@@ -6,7 +6,7 @@ import { Link, useNavigate } from 'react-router-dom'
 
 export default function Signup()
 {
-    const [username, setUsername] = React.useState("");
+
     const [email, setEmail] = React.useState("");
     const [password, setPassword] = React.useState("");
     const [confirmPassword, setConfirmPassword] = React.useState("");
@@ -26,7 +26,6 @@ export default function Signup()
                 "Content-Type": "application/json",
             },
             body: JSON.stringify({
-                username,
                 email,
                 password,
             }),
@@ -45,12 +44,6 @@ export default function Signup()
         <div className="signup">
             <h1>Sign Up</h1>
             <form onSubmit={handleSubmit}>
-                <input
-                    type="text"
-                    placeholder="Username"
-                    value={username}
-                    onChange={(e) => setUsername(e.target.value)}
-                />
                 <input
                     type="email"
                     placeholder="Email"

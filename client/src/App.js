@@ -5,6 +5,8 @@ import Home from './pages/Home';
 import Game from './components/Game';
 import Signup from './pages/Signup';
 import PictureMatching from './pages/PictureMatching';
+import ProtectedRoute from "./ProtectedRoute";
+import { useAuth0 } from "@auth0/auth0-react";
 
 function App() {
   return (
@@ -25,9 +27,10 @@ function App() {
           </ul>
         </nav> */}
         <Routes>
-          <Route path="/" element={<Home />} />
-          <Route path="/game" element={<Game />} />
-          <Route path="/signup" element={<Signup />} />
+          <Route path = "/login" element = {<Login />} />
+          <Route path = "/signup" element = {<Signup />} />
+          <Route path="/" element={<ProtectedRoute> <Home /> </ProtectedRoute>} />
+          <Route path="/game" element={<ProtectedRoute> <Game /> </ProtectedRoute>} />
           <Route path="/picture-matching" element={<PictureMatching />} />
         </Routes>
       </div>
