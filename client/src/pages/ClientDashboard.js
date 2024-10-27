@@ -38,6 +38,7 @@ const ClientDashboard = () => {
   return (
     <div className="client-dashboard">
         <Navbar />
+        <Link to  = "/caregiver" className = "caregiver-button-redirect">Caregiver Dashboard</Link>
       <div className="dashboard-header">Welcome to Cognify</div>
 
       {/* Games Section */}

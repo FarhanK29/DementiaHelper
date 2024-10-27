@@ -35,13 +35,13 @@ function App() {
         <Routes>
           <Route path="/signup" element={<Signup />} />
           <Route path="/login" element={<Login />} />
-          <Route path = "/" element = {<ClientDashboard />} />
-          <Route path = "/caregiver/" element = {<CaregiverDashboard />} />
-          {/* <Route path="/memory-game" element={<ProtectedRoute> <Game /> </ProtectedRoute>} /> */}
-          <Route path = "/memory-game" element = {<Game />} />
-          <Route path="/picture-matching" element={<PictureMatching />} />
-          <Route path="/family" element={<FamilyMatching />} />
-          <Route path="*" element={<ClientDashboard />} />
+
+          <Route path = "/" element = {<ProtectedRoute> <ClientDashboard /> </ProtectedRoute>} />
+          <Route path = "/caregiver/" element = {<ProtectedRoute>  <CaregiverDashboard /> </ProtectedRoute>} />
+          <Route path = "/memory-game" element = {<ProtectedRoute> <Game /> </ProtectedRoute>} />
+          <Route path="/picture-matching" element={<ProtectedRoute>  <PictureMatching /> </ProtectedRoute>} />
+          <Route path="*" element={<ProtectedRoute>  <ClientDashboard /> </ProtectedRoute>} />
+
         </Routes>
       </div>
     </Router>
