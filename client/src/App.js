@@ -9,7 +9,7 @@ import ProtectedRoute from './components/ProtectedRoutes';
 import Login from './pages/Login';
 import Signup from './pages/Signup';
 import CaregiverDashboard from './pages/CaregiverDashboard';
-import Signup from './components/SignUp';
+// import Signup from './components/SignUp';
 import axios from 'axios';
 
 function App() {

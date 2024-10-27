@@ -7,7 +7,7 @@ import { Link, useNavigate } from 'react-router-dom'
 export default function Signup()
 {
 
-    const [email, setEmail] = React.useState("");
+    const [username, setUsername] = React.useState("");
     const [password, setPassword] = React.useState("");
     const [confirmPassword, setConfirmPassword] = React.useState("");
     const [error, setError] = React.useState("");
@@ -21,19 +21,19 @@ export default function Signup()
             return;
         }
 
-        if(!email || !password || !confirmPassword)
+        if(!username || !password || !confirmPassword)
         {
             setError("Please fill in all fields");
             return;
         }
 
-        const response = await fetch("http://localhost:4000/signup", {
+        const response = await fetch("http://127.0.0.1:8000/api/signup/", {
             method: "POST",
             headers: {
                 "Content-Type": "application/json",
             },
             body: JSON.stringify({
-                email,
+                username,
                 password,
             }),
         });
@@ -44,6 +44,7 @@ export default function Signup()
         } else {
             setError(data.error);
         }
+        navigate('/login');
     }
 
 
@@ -57,8 +58,8 @@ export default function Signup()
                     <input
                         className = "username-input"
                         type="text"
-                        value={email}
-                        onChange={(e) => setEmail(e.target.value)}
+                        value={username}
+                        onChange={(e) => setUsername(e.target.value)}
                         required
                     />
                     <label>Password</label>
