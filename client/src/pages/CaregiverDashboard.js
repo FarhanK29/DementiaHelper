@@ -1,13 +1,15 @@
-import React, { useState } from "react";
+import React, { useEffect, useState } from "react";
 import "./CaregiverDashboard.css";
 import { FaSearch, FaTrash } from "react-icons/fa";
 import Navbar from "../components/Navbar";
 import Graph from "../components/graph"
+import axios from "axios";
 
 const CaregiverDashboard = () => {
   const [selectedUser, setSelectedUser] = useState("");
   const [date, setDate] = useState(new Date().toISOString().split("T")[0]);
   const [reminders, setReminders] = useState([{ id: Date.now(), text: "" }]);
+  const [userData, setUserData] = useState(null);
 
   const handleAddReminder = () => {
     setReminders([...reminders, { id: Date.now(), text: "" }]);
@@ -29,7 +31,22 @@ const CaregiverDashboard = () => {
     alert(`Reminders for ${selectedUser} on ${date}: ${remindersText.join(", ")}`);
   };
 
+  useEffect(() => {
+    const fetchUserData = async () => {
+      try {
+        const response = await axios.get(`http://127.0.0.1:8000/api/user/${selectedUser}/`, {
+        });
+        setUserData(response.data);  // Set the fetched user data in state
+      } catch (error) {
+        console.error("Error fetching user data:", error);
+      }
+    };
 
+    if (selectedUser) {
+      fetchUserData();
+    }
+  }, [selectedUser]);
+  console.log(userData);
 
   return (
     <div className="caregiver-dashboard">
