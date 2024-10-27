@@ -2,6 +2,7 @@ import React, { useState } from "react";
 import { Link } from "react-router-dom";
 import { AiOutlineDelete } from "react-icons/ai";
 import "./ClientDashboard.css";
+import Navbar from '../components/Navbar';
 
 const ClientDashboard = () => {
   const [reminders, setReminders] = useState([
@@ -36,6 +37,7 @@ const ClientDashboard = () => {
 
   return (
     <div className="client-dashboard">
+        <Navbar />
       <div className="dashboard-header">Welcome to Cognify</div>
 
       {/* Games Section */}
