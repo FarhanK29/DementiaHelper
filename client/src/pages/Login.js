@@ -22,14 +22,12 @@ const Login = () => {
       });
 
       if (!response.ok) {
-        throw new Error('Network response was not ok');
-      }
-
-      const data = await response.json();
-      if(data.status !== "ok"){
         setError("Invalid email/password");
         return;
       }
+
+      const data = await response.json();
+      
       localStorage.setItem('accessToken', data.access);
       localStorage.setItem('refreshToken', data.refresh);
       
