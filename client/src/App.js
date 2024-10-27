@@ -10,6 +10,7 @@ import Signup from './pages/Signup';
 import CaregiverDashboard from './pages/CaregiverDashboard';
 import ClientDashboard from './pages/ClientDashboard';
 import axios from 'axios';
+import FamilyMatching from './pages/familyRecognition';
 
 function App() {
   const [username, setUsername] = useState(null);
@@ -39,6 +40,7 @@ function App() {
           {/* <Route path="/memory-game" element={<ProtectedRoute> <Game /> </ProtectedRoute>} /> */}
           <Route path = "/memory-game" element = {<Game />} />
           <Route path="/picture-matching" element={<PictureMatching />} />
+          <Route path="/family" element={<FamilyMatching />} />
           <Route path="*" element={<ClientDashboard />} />
         </Routes>
       </div>

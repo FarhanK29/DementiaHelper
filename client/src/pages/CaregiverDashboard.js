@@ -42,7 +42,6 @@ const CaregiverDashboard = () => {
         
         // Fetch scores data based on selected user
         const scoresResponse = await axios.get(`http://127.0.0.1:8000/api/update-score/${selectedUser}/`);
-        console.log(scoresResponse)
         setScores(scoresResponse.data); // Store scores in state
       } catch (error) {
         console.error("Error fetching user data:", error);

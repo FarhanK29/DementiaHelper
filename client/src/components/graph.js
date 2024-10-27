@@ -43,6 +43,8 @@ const ScoresChart = ({ scores }) => {
     ],
   });
 
+  console.log(scores1)
+
   return (
     <div>
       <h2>Memory Score</h2>
@@ -51,7 +53,7 @@ const ScoresChart = ({ scores }) => {
       <h2>Image Recognition Score</h2>
       <Line data={getChartData(scores2, 'Image Recognition Score', 'green')} options={chartOptions} />
 
-      <h2>Score 3</h2>
+      <h2>Family Recognition</h2>
       <Line data={getChartData(scores3, 'Score 3', 'red')} options={chartOptions} />
     </div>
   );
