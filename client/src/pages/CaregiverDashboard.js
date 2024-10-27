@@ -2,6 +2,7 @@ import React, { useState } from "react";
 import "./CaregiverDashboard.css";
 import { FaSearch, FaTrash } from "react-icons/fa";
 import Navbar from "../components/Navbar";
+import Graph from "../components/graph"
 
 const CaregiverDashboard = () => {
   const [selectedUser, setSelectedUser] = useState("");
@@ -97,7 +98,7 @@ const CaregiverDashboard = () => {
         
             <div className="section graph">
                 <h2>Activity Graph</h2>
-                <div className="graph-placeholder">Graph will be displayed here.</div>
+                <Graph></Graph>
             </div>
         </div>
     </div>

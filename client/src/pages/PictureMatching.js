@@ -1,65 +1,103 @@
-// src/Home.js
-import React from "react";
-import dog from "../data/dog.png";
-import "./pictureMatching.css";
-import BackButton from "../components/BackButton";
-import { useState } from "react";
+// src/components/PictureMatching.js
 
-function PictureMatching() {
-  const [sentence, setSentence] = useState("");
-  const [response, setResponse] = useState("res");
+import React, { useState, useEffect } from 'react';
+import axios from '../axios';
 
-  const sendPostRequest = async () => {
-    const url = "http://localhost:5000/api/predict"; // Replace with your API endpoint
-    const payload = {
-      sentence1: sentence,
-      sentence2: "Dog is looking the wall",
+const PictureMatching = () => {
+  const [pictures, setPictures] = useState([]);
+  const [currentIndex, setCurrentIndex] = useState(0);
+  const [userDescription, setUserDescription] = useState('');
+  const [completionMessage, setCompletionMessage] = useState('');
+  const [similarityScore, setSimilarityScore] = useState(null);
+  const [isSubmitted, setIsSubmitted] = useState(false); // Track if the description has been submitted
+
+  useEffect(() => {
+    // Fetch 5 random pictures from the API
+    const fetchPictures = async () => {
+      try {
+        const response = await axios.get('/api/random-pictures/'); // Replace with your actual API endpoint
+        setPictures(response.data);
+      } catch (error) {
+        console.error('Error fetching pictures:', error);
+      }
     };
 
-    console.log(sentence);
+    fetchPictures();
+  }, []);
+
+  const handleSubmit = async (e) => {
+    e.preventDefault();
+
+    // Get the current picture's description
+    const currentPictureDescription = pictures[currentIndex].description;
 
     try {
-      const res = await fetch(url, {
-        method: "POST",
-        headers: {
-          "Content-Type": "application/json",
-        },
-        body: JSON.stringify(payload),
+      // Make a call to the similarity API
+      const response = await axios.post('/api/similarity/', {
+        sentence1: userDescription,
+        sentence2: currentPictureDescription,
       });
 
-      if (!res.ok) throw new Error(`Error: ${res.status}`);
-
-      const data = await res.json();
-      console.log(data);
-      setResponse(data.result); // Save response data to state
+      // Update the similarity score
+      setSimilarityScore(response.data.result);
+      setIsSubmitted(true); // Mark as submitted
     } catch (error) {
-      console.error(error);
+      console.error('Error submitting description:', error);
     }
   };
 
-  function handleSubmit() {
-    sendPostRequest();
-  }
-
-  function handleSentenceChange(e) {
-    setSentence(e.target.value);
-  }
+  const handleNext = () => {
+    // Move to the next picture
+    if (currentIndex < pictures.length - 1) {
+      setCurrentIndex(currentIndex + 1);
+      setUserDescription(''); // Reset user description
+      setSimilarityScore(null); // Reset the similarity score
+      setIsSubmitted(false); // Reset the submission state
+    } else {
+      setCompletionMessage('You have completed the picture matching exercise!');
+    }
+  };
 
   return (
-    <div>
-      <BackButton />
-
-      <h1>Picture Matching</h1>
-      <div className="images-div">
-        <img src={dog}></img>
-      </div>
-      <div className="picture-matching-box">
-        <textarea onChange={(e) => handleSentenceChange(e)}></textarea>
-        <button onClick={(e) => sendPostRequest()}>Submit</button>
-        <p>{response}</p>
-      </div>
+    <div style={{ textAlign: 'center', margin: '20px' }}>
+      {completionMessage ? (
+        <h2>{completionMessage}</h2>
+      ) : (
+        <>
+          {pictures.length > 0 && currentIndex < pictures.length && (
+            <div>
+              <h1>Picture Matching</h1>
+              <img
+                src={pictures[currentIndex].image_url} // Assuming the image URL is stored in the 'image' field
+                alt={pictures[currentIndex].description}
+                style={{ width: '300px', height: 'auto', marginBottom: '20px' }}
+              />
+              <form onSubmit={handleSubmit}>
+                <input
+                  type="text"
+                  value={userDescription}
+                  onChange={(e) => setUserDescription(e.target.value)}
+                  placeholder="Describe this picture"
+                  required
+                />
+                <button type="submit">Submit</button>
+              </form>
+              {isSubmitted && (
+                <div style={{ marginTop: '10px', fontSize: '1.2em' }}>
+                  Similarity Score: {similarityScore.toFixed(2)}%
+                </div>
+              )}
+              {isSubmitted && (
+                <button onClick={handleNext} style={{ marginTop: '10px' }}>
+                  Next
+                </button>
+              )}
+            </div>
+          )}
+        </>
+      )}
     </div>
   );
-}
+};
 
 export default PictureMatching;
