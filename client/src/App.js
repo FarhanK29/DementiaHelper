@@ -30,17 +30,14 @@ function App() {
   return (
     <Router>
       <div>
-       
         <Routes>
-
           <Route path="/signup" element={<Signup />} />
           <Route path="/login" element={<Login />} />
-          {/* <Route path="/" element={ <Home /> } /> */}
           <Route path = "/" element = {<ClientDashboard />} />
           <Route path = "/caregiver/" element = {<CaregiverDashboard />} />
           <Route path="/game" element={<ProtectedRoute> <Game /> </ProtectedRoute>} />
           <Route path="/picture-matching" element={<PictureMatching />} />
-          <Route path="*" element={ <Home /> } />
+          <Route path="*" element={ <ClientDashboard /> } />
         </Routes>
       </div>
     </Router>
