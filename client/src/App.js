@@ -40,6 +40,7 @@ function App() {
           <Route path = "/caregiver/" element = {<ProtectedRoute>  <CaregiverDashboard /> </ProtectedRoute>} />
           <Route path = "/memory-game" element = {<ProtectedRoute> <Game /> </ProtectedRoute>} />
           <Route path="/picture-matching" element={<ProtectedRoute>  <PictureMatching /> </ProtectedRoute>} />
+          <Route path="/family" element={<ProtectedRoute>  <FamilyMatching /> </ProtectedRoute>} />
           <Route path="*" element={<ProtectedRoute>  <ClientDashboard /> </ProtectedRoute>} />
 
         </Routes>

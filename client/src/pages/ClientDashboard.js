@@ -51,6 +51,9 @@ const ClientDashboard = () => {
           <Link to="/memory-game" className="game-card">
             <div>Memory Game</div>
           </Link>
+          <Link to="/family" className="game-card">
+            <div>Family Recognition</div>
+          </Link>
         </div>
       </div>
 
