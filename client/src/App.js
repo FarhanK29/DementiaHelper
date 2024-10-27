@@ -29,7 +29,6 @@ function App() {
             </li>
           </ul>
         </nav> */}
-        <Navbar />
         <Routes>
           <Route path="/signup" element={<Signup />} />
           <Route path="/login" element={<Login />} />
