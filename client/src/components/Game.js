@@ -71,14 +71,14 @@ function Game() {
   };
 
   return (
-    <div>
-      <BackButton /> {/* Add the BackButton here */}
+    <div className="game-container">
+      <BackButton />
       <h1 class="game">Memory Cards</h1>
       <div className="grid-container">
         {cards.map((card, index) => (
           <div
             key={index}
-            className={`card ${index === firstCard || index === secondCard ? 'flipped' : ''}`}
+            className={`card ${index === firstCard || index === secondCard || matchedCards.includes(index) ? 'flipped' : ''}`}
             onClick={() => flipCard(index)}
             data-name={card.name}
           >
