@@ -1,5 +1,5 @@
 import React from 'react'
-import './Signup.css';
+import './Signup.css'
 import { Link, useNavigate } from 'react-router-dom'
 
 
@@ -15,8 +15,15 @@ export default function Signup()
 
     const handleSubmit = async (e) => {
         e.preventDefault();
+
         if (password !== confirmPassword) {
             setError("Passwords do not match");
+            return;
+        }
+
+        if(!email || !password || !confirmPassword)
+        {
+            setError("Please fill in all fields");
             return;
         }
 
@@ -41,31 +48,43 @@ export default function Signup()
 
 
     return(
-        <div className="signup">
-            <h1>Sign Up</h1>
-            <form onSubmit={handleSubmit}>
-                <input
-                    type="email"
-                    placeholder="Email"
-                    value={email}
-                    onChange={(e) => setEmail(e.target.value)}
-                />
-                <input
-                    type="password"
-                    placeholder="Password"
-                    value={password}
-                    onChange={(e) => setPassword(e.target.value)}
-                />
-                <input
-                    type="password"
-                    placeholder="Confirm Password"
-                    value = {confirmPassword}
-                    onChange = {(e) => setConfirmPassword(e.target.value)}
-                />
-                <div> {error && <p className="error">{error}</p>} </div>
-                <button type="submit">Sign Up</button>
-            </form>
-            <p>Already have an account? <Link to="/login">Log in</Link></p>
+        <div className="signup-page">
+            <div className = "signup-box">
+                <h1>Cognify</h1>
+                <h2>Sign Up</h2>
+                <form className = "signup-form" onSubmit={handleSubmit}>
+                    <label>Username</label>
+                    <input
+                        className = "username-input"
+                        type="text"
+                        value={email}
+                        onChange={(e) => setEmail(e.target.value)}
+                        required
+                    />
+                    <label>Password</label>
+                    <input
+                        className = "password-input"
+                        type="password"
+                        value={password}
+                        onChange={(e) => setPassword(e.target.value)}
+                        required
+                    />
+                    <label>Confirm Password</label>
+                    <input
+                        className = "password-input"
+                        type="password"
+                        value = {confirmPassword}
+                        onChange = {(e) => setConfirmPassword(e.target.value)}
+                        required
+                    />
+                    <div className = "signup-button-container">
+                        <button className = "signup-button">Sign Up</button>
+                    </div>
+                    {error && <div className="error">{error}</div>}
+                </form>
+                <div className = "login-redirect">Already have an account? <Link to="/login">Log in</Link></div>
+            </div>
+            
         </div>
     )
 }
