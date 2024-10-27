@@ -1,7 +1,7 @@
-// src/Game.js
 import React, { useEffect, useState } from 'react';
+import axios from 'axios';
 import "../static/styles/game.css";
-import BackButton from './BackButton'; // Import the BackButton
+import BackButton from './BackButton';
 
 function Game() {
   const [cards, setCards] = useState([]);
@@ -10,6 +10,7 @@ function Game() {
   const [lockBoard, setLockBoard] = useState(false);
   const [score, setScore] = useState(0);
   const [matchedCards, setMatchedCards] = useState([]);
+  const [gameCompleted, setGameCompleted] = useState(false);
 
   useEffect(() => {
     fetch('/data.json')
@@ -68,12 +69,45 @@ function Game() {
     setLockBoard(false);
     setMatchedCards([]);
     shuffleCards(cards);
+    setGameCompleted(false); // Reset the game completion state
+    updateScore();
   };
+
+  const updateScore = async () => {
+    const username = localStorage.getItem('username'); // Get the username from local storage
+    if (username) {
+        const scoreValue = score > 0 ? Math.floor(9 / score) : 0; // Calculate the score value, avoiding division by zero
+        console.log(username, scoreValue); // Log username and scoreValue for debugging
+        try {
+            await axios.post(`http://127.0.0.1:8000/api/update-score/${username}/`, {
+                username: username,
+                score_type: 'score1',
+                score_value: scoreValue,
+            });
+            console.log('Score updated successfully.');
+        } catch (error) {
+            console.error('Error updating score:', error);
+        }
+    } else {
+        console.error('No username found in local storage.');
+    }
+};
+
+  const checkGameCompletion = () => {
+    if (matchedCards.length === cards.length) {
+      setGameCompleted(true);
+      updateScore(); // Update score when the game is completed
+    }
+  };
+
+  useEffect(() => {
+    checkGameCompletion(); // Check if the game is complete on every render
+  }, [matchedCards]); // Depend on matchedCards
 
   return (
     <div className="game-container">
       <BackButton />
-      <h1 class="game">Memory Cards</h1>
+      <h1 className="game">Memory Cards</h1>
       <div className="grid-container">
         {cards.map((card, index) => (
           <div
@@ -93,6 +127,7 @@ function Game() {
       <div className="actions">
         <button onClick={restart}>Restart</button>
       </div>
+      {gameCompleted && <p className="completion-message">Congratulations! You've completed the game!</p>}
     </div>
   );
 }

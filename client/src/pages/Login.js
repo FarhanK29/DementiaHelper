@@ -1,6 +1,7 @@
-import React, { useState } from 'react';
+import React, { useEffect, useState } from 'react';
 import { useNavigate, Link } from 'react-router-dom';
 import './Login.css';
+import axios from 'axios';
 
 const Login = () => {
   const [username, setUsername] = useState('');
@@ -30,6 +31,7 @@ const Login = () => {
       
       localStorage.setItem('accessToken', data.access);
       localStorage.setItem('refreshToken', data.refresh);
+      localStorage.setItem('username', username);
       
       // Redirect to the protected route (e.g., the game)
       navigate('/game');  // Change to the route you want to redirect to

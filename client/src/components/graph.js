@@ -5,7 +5,7 @@ import { Chart as ChartJS, LineElement, CategoryScale, LinearScale, PointElement
 // Register required Chart.js components
 ChartJS.register(LineElement, CategoryScale, LinearScale, PointElement);
 
-const ScoresChart = () => {
+const ScoresChart = (props) => {
   // JSON data for demonstration purposes
   const data = {
     patientId: "12345",
