@@ -1,0 +1,31 @@
+/* src/ActivityTiles.css */
+
+.activity-tiles-container {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  height: 70vh; /* Adjust as needed */
+}
+
+.tile {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  height: 50vh; /* Height similar to previous size */
+  width: 40vw; /* Width similar to previous size */
+  margin: 0 10px; /* Space between tiles */
+  background-color: #444; /* Darker background for the tiles */
+  color: white;
+  border-radius: 8px;
+  text-decoration: none; /* Remove underline from links */
+  transition: background-color 0.3s;
+}
+
+.tile:hover {
+  background-color: #555; /* Darker on hover */
+}
+
+.tile h2 {
+  margin: 0;
+  font-size: 24px; /* Adjust font size as needed */
+}

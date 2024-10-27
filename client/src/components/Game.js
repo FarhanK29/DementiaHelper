@@ -1,6 +1,7 @@
 // src/Game.js
 import React, { useEffect, useState } from 'react';
 import "../static/styles/game.css";
+import BackButton from './BackButton'; // Import the BackButton
 
 function Game() {
   const [cards, setCards] = useState([]);
@@ -8,14 +9,13 @@ function Game() {
   const [secondCard, setSecondCard] = useState(null);
   const [lockBoard, setLockBoard] = useState(false);
   const [score, setScore] = useState(0);
-  const [matchedCards, setMatchedCards] = useState([]); // Track matched cards
+  const [matchedCards, setMatchedCards] = useState([]);
 
   useEffect(() => {
-    // Fetch cards from the JSON file and initialize the game
     fetch('/data.json')
       .then((res) => res.json())
       .then((data) => {
-        const duplicatedCards = [...data, ...data]; // Duplicate cards for matching
+        const duplicatedCards = [...data, ...data];
         shuffleCards(duplicatedCards);
       });
   }, []);
@@ -43,7 +43,7 @@ function Game() {
 
     if (isMatch) {
       setMatchedCards((prev) => [...prev, firstCard, secondCardIndex]);
-      resetBoard(); // Reset after a match
+      resetBoard();
     } else {
       unflipCards();
     }
@@ -66,18 +66,19 @@ function Game() {
     setFirstCard(null);
     setSecondCard(null);
     setLockBoard(false);
-    setMatchedCards([]); // Clear matched cards
-    shuffleCards(cards); // Shuffle cards again
+    setMatchedCards([]);
+    shuffleCards(cards);
   };
 
   return (
     <div>
-      <h1>Memory Cards</h1>
+      <BackButton /> {/* Add the BackButton here */}
+      <h1 class="game">Memory Cards</h1>
       <div className="grid-container">
         {cards.map((card, index) => (
           <div
             key={index}
-            className={`card ${index === firstCard || index === secondCard || matchedCards.includes(index) ? 'flipped' : ''}`}
+            className={`card ${index === firstCard || index === secondCard ? 'flipped' : ''}`}
             onClick={() => flipCard(index)}
             data-name={card.name}
           >
@@ -88,7 +89,7 @@ function Game() {
           </div>
         ))}
       </div>
-      <p>Tries: <span className="score">{score}</span></p>
+      <p>Score: <span className="score">{score}</span></p>
       <div className="actions">
         <button onClick={restart}>Restart</button>
       </div>
