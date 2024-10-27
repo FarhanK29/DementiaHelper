@@ -1,9 +1,11 @@
 import React, { useState } from 'react';
-import { useNavigate } from 'react-router-dom';
+import { useNavigate, Link } from 'react-router-dom';
+import './Login.css';
 
 const Login = () => {
   const [username, setUsername] = useState('');
   const [password, setPassword] = useState('');
+  const [error, setError] = useState(null);
   const navigate = useNavigate();
 
   const handleLogin = async (event) => {
@@ -31,25 +33,36 @@ const Login = () => {
   };
 
   return (
-    <div>
-      <h2>Login</h2>
-      <form onSubmit={handleLogin}>
-        <input 
-          type="text" 
-          value={username} 
-          onChange={(e) => setUsername(e.target.value)} 
-          placeholder="Username" 
-          required 
-        />
-        <input 
-          type="password" 
-          value={password} 
-          onChange={(e) => setPassword(e.target.value)} 
-          placeholder="Password" 
-          required 
-        />
-        <button type="submit">Login</button>
-      </form>
+    <div className = "login-page">
+        <div className = "login-box"> 
+            <h1>Cognify</h1>
+            <h2>Login</h2>
+            <form className = "login-form" onSubmit={handleLogin}>
+                <label>Username</label>
+                <input 
+                    className = "username-input"
+                    type="text" 
+                    value={username} 
+                    onChange={(e) => setUsername(e.target.value)} 
+                    required 
+                />
+                <label>Password</label>
+                <input 
+                    className = "password-input"
+                    type="password" 
+                    value={password} 
+                    onChange={(e) => setPassword(e.target.value)} 
+                    required 
+                />
+                <div className = "login-button-container">
+                    <button className = "login-button">Login</button>
+                </div>
+                {error && <div className="error">{error}</div>}
+                
+                <h3><Link className = "forgot-password-link">Forgot Password?</Link></h3>
+                <div className = "registration-redirect">Don't have an account? <Link className = "registration-link" to = "/signup" >Register Here</Link></div>
+            </form>
+        </div>
     </div>
   );
 };
