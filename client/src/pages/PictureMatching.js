@@ -1,6 +1,7 @@
 // src/components/PictureMatching.js
 
 import React, { useState, useEffect } from 'react';
+import BackButton from '../components/BackButton';
 import axios from '../axios';
 import './PictureMatching.css'; // Ensure you import your CSS file
 
@@ -11,6 +12,7 @@ const PictureMatching = () => {
   const [completionMessage, setCompletionMessage] = useState('');
   const [similarityScore, setSimilarityScore] = useState(null);
   const [isSubmitted, setIsSubmitted] = useState(false);
+
 
   useEffect(() => {
     // Fetch 5 random pictures from the API
@@ -63,6 +65,7 @@ const PictureMatching = () => {
 
   return (
     <div className="picture-matching-container"> {/* Adjusted className */}
+      <BackButton />
       {completionMessage ? (
         <h2 className="completion-message">{completionMessage}</h2>
       ) : (
