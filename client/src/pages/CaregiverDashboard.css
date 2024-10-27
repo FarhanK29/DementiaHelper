@@ -1,5 +1,4 @@
 
-  
   /* Dashboard styling */
   .caregiver-dashboard {
     display: flex;
@@ -29,12 +28,15 @@
 
 
   
-  .container {/* Reminder item styling */
+.container {/* Reminder item styling */
     .reminder-item {
       display: flex;
       align-items: center;
       margin-top: 0.5rem;
       margin-bottom: 0.5rem;
+      background-color:white;
+      border:none;
+      
     }
     
     .reminder-input {
@@ -92,14 +94,14 @@
   }
   
   /* Headings */
-  h1 {
+  .caregiver-h1 {
     font-size: 2.2rem;
     color: #333;
     text-align: center;
     margin-bottom: 1.5rem;
   }
   
-  h2 {
+    .caregiver-h2 {
     font-size: 1.3rem;
     color: #555;
     margin-bottom: 0.75rem;

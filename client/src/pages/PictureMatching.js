@@ -1,7 +1,9 @@
 // src/components/PictureMatching.js
 
 import React, { useState, useEffect } from 'react';
+import BackButton from '../components/BackButton';
 import axios from '../axios';
+import './PictureMatching.css'; // Ensure you import your CSS file
 
 const PictureMatching = () => {
   const [pictures, setPictures] = useState([]);
@@ -9,7 +11,8 @@ const PictureMatching = () => {
   const [userDescription, setUserDescription] = useState('');
   const [completionMessage, setCompletionMessage] = useState('');
   const [similarityScore, setSimilarityScore] = useState(null);
-  const [isSubmitted, setIsSubmitted] = useState(false); // Track if the description has been submitted
+  const [isSubmitted, setIsSubmitted] = useState(false);
+
 
   useEffect(() => {
     // Fetch 5 random pictures from the API
@@ -46,6 +49,8 @@ const PictureMatching = () => {
     }
   };
 
+
+
   const handleNext = () => {
     // Move to the next picture
     if (currentIndex < pictures.length - 1) {
@@ -59,36 +64,38 @@ const PictureMatching = () => {
   };
 
   return (
-    <div style={{ textAlign: 'center', margin: '20px' }}>
+    <div className="picture-matching-container"> {/* Adjusted className */}
+      <BackButton />
       {completionMessage ? (
-        <h2>{completionMessage}</h2>
+        <h2 className="completion-message">{completionMessage}</h2>
       ) : (
         <>
           {pictures.length > 0 && currentIndex < pictures.length && (
-            <div>
-              <h1>Picture Matching</h1>
+            <div className="picture-card">
+              <h1 className="title">Picture Matching</h1>
               <img
-                src={pictures[currentIndex].image_url} // Assuming the image URL is stored in the 'image' field
+                src={pictures[currentIndex].image_url}
                 alt={pictures[currentIndex].description}
-                style={{ width: '300px', height: 'auto', marginBottom: '20px' }}
+                className="picture-image"
               />
-              <form onSubmit={handleSubmit}>
+              <form className="description-form" onSubmit={handleSubmit}>
                 <input
                   type="text"
                   value={userDescription}
                   onChange={(e) => setUserDescription(e.target.value)}
                   placeholder="Describe this picture"
                   required
+                  className="description-input"
                 />
-                <button type="submit">Submit</button>
+                <button type="submit" className="submit-button">Submit</button>
               </form>
               {isSubmitted && (
-                <div style={{ marginTop: '10px', fontSize: '1.2em' }}>
+                <div className="similarity-score">
                   Similarity Score: {similarityScore.toFixed(2)}%
                 </div>
               )}
               {isSubmitted && (
-                <button onClick={handleNext} style={{ marginTop: '10px' }}>
+                <button onClick={handleNext} className="next-button">
                   Next
                 </button>
               )}

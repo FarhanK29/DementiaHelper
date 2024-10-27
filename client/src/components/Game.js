@@ -107,7 +107,7 @@ function Game() {
   return (
     <div className="game-container">
       <BackButton />
-      <h1 className="game">Memory Cards</h1>
+      <h1 class="game-h1">Memory Cards</h1>
       <div className="grid-container">
         {cards.map((card, index) => (
           <div
@@ -123,9 +123,9 @@ function Game() {
           </div>
         ))}
       </div>
-      <p>Score: <span className="score">{score}</span></p>
+      <p className = "game-score">Score: <span className="score">{score}</span></p>
       <div className="actions">
-        <button onClick={restart}>Restart</button>
+        <button className = "game-restart-button" onClick={restart}>Restart</button>
       </div>
       {gameCompleted && <p className="completion-message">Congratulations! You've completed the game!</p>}
     </div>

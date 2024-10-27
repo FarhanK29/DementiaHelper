@@ -15,6 +15,7 @@ body{
 }
 
 .login-box{
+    
     color:black;
     background-color:white;
     display:flex;
@@ -24,12 +25,10 @@ body{
     top: 50%;
     left: 50%;
     transform: translate(-50%, -50%);
-    padding:100px;
+    padding: 75px 100px;
     /* background-color:blue; */
     box-shadow: 0 0 10px 0 rgba(0, 0, 0, 0.1);
     border-radius:15px;
-
-    
 
 
 }
@@ -65,13 +64,13 @@ body{
 
 }
 .username-input, .password-input{
-    color:white;
     border-radius:10px;
     background: rgba(78, 73, 73, 0.3);
     border:0.5px solid white;
     padding-left:10px;
     height:35px;
     width:240px;
+    color: black;
 }
 
 .username-input:hover, .password-input:hover{
@@ -80,7 +79,7 @@ body{
 }
 
 ::placeholder{
-    color:white;
+    color:black;
 }
 
 .login-button{
