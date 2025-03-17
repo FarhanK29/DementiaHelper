@@ -20,3 +20,6 @@ Cognify is a platform designed to assist patients with dementia in tracking thei
 
 Cognify was developed during a **hackathon** by a team of **four** passionate developers, aiming to create a meaningful impact in dementia care and neurotechnology as a whole.
 
+##Notes
+
+This github repository only contains the frontend code. The backend code can be found in the following repository [https://github.com/Afn377/DementiaServer](url)
